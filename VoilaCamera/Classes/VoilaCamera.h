@@ -28,10 +28,23 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import <LYCategory/LYCategory.h>
 #import <FastttCamera/FastttCamera.h>
 
 
 @interface VoilaCamera : NSObject
 
+@end
+
+@interface VCView : UIView
+- (void)initial;
+@end
+
+@interface VCControl : UIControl
+- (void)initial;
+@end
+
+@interface VCViewController : UIViewController
+- (void)initial;
 @end

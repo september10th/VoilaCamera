@@ -33,3 +33,61 @@
 @implementation VoilaCamera
 
 @end
+
+@implementation VCView
+
+- (instancetype)initWithFrame:(CGRect)frame {
+	if (self = [super initWithFrame:frame]) {
+		[self initial];
+	}
+	return self;
+}
+
+- (void)initial {
+}
+
+@end
+
+@implementation VCControl
+
+- (instancetype)initWithFrame:(CGRect)frame {
+	if (self = [super initWithFrame:frame]) {
+		[self initial];
+	}
+	return self;
+}
+
+- (void)initial {
+}
+
+@end
+
+@implementation VCViewController
+
+- (instancetype)init {
+	if (self = [super init]) {
+		[self initial];
+	}
+	return self;
+}
+
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+	if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+		[self initial];
+	}
+	return self;
+}
+
+/*
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+	if (self = [super initWithCoder:aDecoder]) {
+		[self initial];
+	}
+	return self;
+}
+*/
+
+- (void)initial {
+}
+
+@end

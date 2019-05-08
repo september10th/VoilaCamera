@@ -28,9 +28,10 @@
 //
 
 #import "CameraViewController.h"
+#import <VoilaCamera/VoilaCamera.h>
 
-@interface CameraViewController ()
 
+@interface CameraViewController () {}
 @end
 
 @implementation CameraViewController
