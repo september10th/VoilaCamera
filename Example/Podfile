@@ -1,0 +1,10 @@
+use_frameworks!
+platform :ios, '11.0'
+inhibit_all_warnings!
+
+target 'VoilaCamera_Example' do
+	pod 'VoilaCamera', :path => '../'
+	
+	pod 'Masonry'
+
+end
