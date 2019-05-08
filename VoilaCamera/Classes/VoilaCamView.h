@@ -1,5 +1,5 @@
 //
-//	VoilaCamera.h
+//	VoilaCamView.h
 //	VoilaCamera
 //
 //	Created by Luo Yu on 2019-04-10.
@@ -27,26 +27,9 @@
 //	CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-#import <LYCategory/LYCategory.h>
-#import <PBJVision/PBJVision.h>
+#import <VoilaCamera/VoilaCamera.h>
 
 
-@interface VoilaCamera : NSObject
+@interface VoilaCamView : VCView
 
 @end
-
-@interface VCView : UIView
-- (void)initial;
-@end
-
-@interface VCControl : UIControl
-- (void)initial;
-@end
-
-@interface VCViewController : UIViewController
-- (void)initial;
-@end
-
-#import <VoilaCamera/VoilaCamView.h>

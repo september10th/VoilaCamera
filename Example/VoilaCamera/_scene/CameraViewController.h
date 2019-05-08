@@ -27,9 +27,9 @@
 //	CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import <UIKit/UIKit.h>
+#import <VoilaCamera/VoilaCamera.h>
 
 
-@interface CameraViewController : UIViewController
+@interface CameraViewController : VCViewController
 
 @end

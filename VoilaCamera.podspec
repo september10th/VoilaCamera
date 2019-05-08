@@ -31,6 +31,6 @@ An open source camera app project based on GPUImage and FastttCamera.
   
   s.frameworks = 'UIKit', 'AVFoundation'
   s.dependency 'LYCategory'
-  s.dependency 'FastttCamera'
+  s.dependency 'PBJVision'
   
 end

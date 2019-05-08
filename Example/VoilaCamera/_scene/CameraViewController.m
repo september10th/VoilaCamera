@@ -28,10 +28,13 @@
 //
 
 #import "CameraViewController.h"
-#import <VoilaCamera/VoilaCamera.h>
 
 
-@interface CameraViewController () {}
+@interface CameraViewController () <PBJVisionDelegate> {
+	
+	AVCaptureVideoPreviewLayer *preview;
+	PBJVision *vision;
+}
 @end
 
 @implementation CameraViewController
@@ -40,11 +43,39 @@
 	[super loadView];
 	
 	self.view.backgroundColor = [UIColor darkGrayColor];
+	
+	{
+		preview = [[PBJVision sharedInstance] previewLayer];
+		preview.frame = self.view.bounds;
+		preview.videoGravity = AVLayerVideoGravityResizeAspectFill;
+		[self.view.layer addSublayer:preview];
+	}
+	
+	{
+		vision = [PBJVision sharedInstance];
+		vision.delegate = self;
+		vision.cameraMode = PBJCameraModeVideo;
+		vision.cameraOrientation = PBJCameraOrientationPortrait;
+		vision.focusMode = PBJFocusModeContinuousAutoFocus;
+		vision.outputFormat = PBJOutputFormatStandard;
+	}
 }
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	// DO ANY ADDITIONAL SETUP AFTER LOADING THE VIEW.
+	
+	[vision startPreview];
 }
+
+- (void)viewDidLayoutSubviews {
+	preview.frame = self.view.bounds;
+}
+
+// MARK: - DELEGATE
+
+// MARK: PBJVisionDelegate
+
+
 
 @end
