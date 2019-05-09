@@ -29,8 +29,68 @@
 
 #import "VoilaCamView.h"
 #import <LYCategory/LYCategory.h>
+#import <PureLayout/PureLayout.h>
 
+
+@interface VoilaCamView () <PBJVisionDelegate> {
+	__weak UIView *vCamera;
+	
+	AVCaptureVideoPreviewLayer *preview;
+	PBJVision *vision;
+}
+@end
 
 @implementation VoilaCamView
+
+// MARK: - INIT
+
+- (void)initial {
+	[super initial];
+	
+	{
+		// MARK: CAMERA PLAYBACK
+		UIView *view = [[UIView alloc] init];
+		[self addSubview:view];
+		vCamera = view;
+		
+		[vCamera autoPinEdgesToSuperviewEdges];
+	}
+	
+	{
+		preview = [[PBJVision sharedInstance] previewLayer];
+		preview.frame = vCamera.bounds;
+		preview.videoGravity = AVLayerVideoGravityResizeAspectFill;
+		[vCamera.layer addSublayer:preview];
+	}
+	
+	{
+		vision = [PBJVision sharedInstance];
+		vision.delegate = self;
+		vision.cameraMode = PBJCameraModeVideo;
+		vision.cameraOrientation = PBJCameraOrientationPortrait;
+		vision.focusMode = PBJFocusModeContinuousAutoFocus;
+		vision.outputFormat = PBJOutputFormatStandard;
+	}
+}
+
+- (void)layoutSubviews {
+	[super layoutSubviews];
+	
+	preview.frame = vCamera.bounds;
+}
+
+// MARK: - METHOD
+
+- (void)previewStart {
+	[vision startPreview];
+}
+
+- (void)previewStop {
+	[vision stopPreview];
+}
+
+// MARK: - DELEGATE
+
+// MARK: PBJVisionDelegate
 
 @end

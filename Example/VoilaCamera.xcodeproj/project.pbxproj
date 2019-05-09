@@ -189,7 +189,7 @@
 				ORGANIZATIONNAME = blodely;
 				TargetAttributes = {
 					6003F589195388D20070C39A = {
-						DevelopmentTeam = BQKPK2R2QX;
+						DevelopmentTeam = K9CJPHW4CP;
 					};
 				};
 			};
@@ -257,8 +257,8 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-VoilaCamera_Example/Pods-VoilaCamera_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/LYCategory/LYCategory.framework",
-				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
 				"${BUILT_PRODUCTS_DIR}/PBJVision/PBJVision.framework",
+				"${BUILT_PRODUCTS_DIR}/PureLayout/PureLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/VoilaCamera/VoilaCamera.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -266,8 +266,8 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LYCategory.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PBJVision.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PureLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VoilaCamera.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -416,7 +416,7 @@
 			baseConfigurationReference = DD4D793ACCD58E5E35A340A0 /* Pods-VoilaCamera_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = BQKPK2R2QX;
+				DEVELOPMENT_TEAM = K9CJPHW4CP;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "VoilaCamera/VoilaCamera-Prefix.pch";
 				INFOPLIST_FILE = "VoilaCamera/VoilaCamera-Info.plist";
@@ -432,7 +432,7 @@
 			baseConfigurationReference = C501D140821B43EB93421FDD /* Pods-VoilaCamera_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = BQKPK2R2QX;
+				DEVELOPMENT_TEAM = K9CJPHW4CP;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "VoilaCamera/VoilaCamera-Prefix.pch";
 				INFOPLIST_FILE = "VoilaCamera/VoilaCamera-Info.plist";
