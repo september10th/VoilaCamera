@@ -33,7 +33,29 @@
 
 @interface VoilaCamView : VCView
 
+/**
+ Start camera preview.
+ */
 - (void)previewStart;
+
+/**
+ Stop camera preview.
+ */
 - (void)previewStop;
+
+/**
+ Flash enable.
+ */
+@property (nonatomic, assign) BOOL enableFlash;
+
+/**
+ Current camera device.
+ */
+@property (nonatomic, assign) VoilaCamDevice device;
+
+/**
+ Flip camera device.
+ */
+- (void)flipCameraDevice;
 
 @end

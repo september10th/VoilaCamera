@@ -89,6 +89,18 @@
 	[vision stopPreview];
 }
 
+- (void)flipCameraDevice {
+	[self setDevice:_device == VoilaCamDeviceBack ? VoilaCamDeviceFront : VoilaCamDeviceBack];
+}
+
+// MARK: PROPERTY
+
+- (void)setDevice:(VoilaCamDevice)device {
+	_device = device;
+	
+	vision.cameraDevice = _device == VoilaCamDeviceBack ? PBJCameraDeviceBack : PBJCameraDeviceFront;
+}
+
 // MARK: - DELEGATE
 
 // MARK: PBJVisionDelegate
