@@ -252,22 +252,16 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-VoilaCamera_Example/Pods-VoilaCamera_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/LYCategory/LYCategory.framework",
 				"${BUILT_PRODUCTS_DIR}/PBJVision/PBJVision.framework",
-				"${BUILT_PRODUCTS_DIR}/PureLayout/PureLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/VoilaCamera/VoilaCamera.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LYCategory.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PBJVision.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PureLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VoilaCamera.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

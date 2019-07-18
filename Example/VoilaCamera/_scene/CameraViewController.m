@@ -28,7 +28,6 @@
 //
 
 #import "CameraViewController.h"
-#import <PureLayout/PureLayout.h>
 
 
 @interface CameraViewController () <PBJVisionDelegate> {
