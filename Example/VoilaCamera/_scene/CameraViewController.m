@@ -47,11 +47,7 @@
 		VoilaCamView *view = [[VoilaCamView alloc] init];
 		[self.view addSubview:view];
 		preview = view;
-		
-		[view autoPinEdgesToSuperviewEdges];
 	}
-	
-	
 }
 
 - (void)viewDidLoad {

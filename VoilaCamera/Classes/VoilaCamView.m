@@ -29,7 +29,6 @@
 
 #import "VoilaCamView.h"
 #import <LYCategory/LYCategory.h>
-#import <PureLayout/PureLayout.h>
 
 
 @interface VoilaCamView () <PBJVisionDelegate> {
@@ -52,8 +51,6 @@
 		UIView *view = [[UIView alloc] init];
 		[self addSubview:view];
 		vCamera = view;
-		
-		[vCamera autoPinEdgesToSuperviewEdges];
 	}
 	
 	{
