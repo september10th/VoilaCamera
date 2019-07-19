@@ -50,7 +50,11 @@
 		preview = view;
 		
 		[view mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop).offset(44);
+			if (@available(iOS 11.0, *)) {
+				make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop).offset(44);
+			} else {
+				make.top.equalTo(self.view).offset(20 + 44);
+			}
 			make.left.right.equalTo(self.view);
 			make.height.equalTo(view.mas_width);
 		}];
