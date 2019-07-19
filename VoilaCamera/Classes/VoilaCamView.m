@@ -29,6 +29,7 @@
 
 #import "VoilaCamView.h"
 #import <LYCategory/LYCategory.h>
+#import <Masonry/Masonry.h>
 
 
 @interface VoilaCamView () <PBJVisionDelegate> {
@@ -51,6 +52,10 @@
 		UIView *view = [[UIView alloc] init];
 		[self addSubview:view];
 		vCamera = view;
+		
+		[view mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.edges.equalTo(self);
+		}];
 	}
 	
 	{
@@ -74,6 +79,13 @@
 	[super layoutSubviews];
 	
 	preview.frame = vCamera.bounds;
+}
+
+- (void)setFrame:(CGRect)frame {
+	[super setFrame:frame];
+	
+	vCamera.frame = (CGRect){CGPointZero, frame.size};
+	preview.frame = (CGRect){CGPointZero, frame.size};
 }
 
 // MARK: - METHOD

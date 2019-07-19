@@ -28,6 +28,7 @@
 //
 
 #import "CameraViewController.h"
+#import <Masonry/Masonry.h>
 
 
 @interface CameraViewController () <PBJVisionDelegate> {
@@ -47,6 +48,12 @@
 		VoilaCamView *view = [[VoilaCamView alloc] init];
 		[self.view addSubview:view];
 		preview = view;
+		
+		[view mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop).offset(44);
+			make.left.right.equalTo(self.view);
+			make.height.equalTo(view.mas_width);
+		}];
 	}
 }
 
@@ -65,10 +72,6 @@
 	[super viewDidDisappear:animated];
 	
 	[preview previewStop];
-}
-
-- (void)viewDidLayoutSubviews {
-	preview.frame = self.view.bounds;
 }
 
 // MARK: - DELEGATE
