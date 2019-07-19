@@ -54,4 +54,9 @@ typedef NS_ENUM(NSUInteger, VoilaCamDevice) {
 	VoilaCamDeviceFront = 1,
 };
 
+typedef NS_ENUM(NSUInteger, VoilaCamMode) {
+	VoilaCamModePhoto = 0,
+	VoilaCamModeVideo = 1,
+};
+
 #import <VoilaCamera/VoilaCamView.h>

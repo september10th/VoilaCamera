@@ -102,6 +102,18 @@
 	[self setDevice:_device == VoilaCamDeviceBack ? VoilaCamDeviceFront : VoilaCamDeviceBack];
 }
 
+- (void)setupShotMode:(VoilaCamMode)mode {
+	switch (mode) {
+		default:
+		case VoilaCamModePhoto: {
+			vision.cameraMode = PBJCameraModePhoto;
+		} break;
+		case VoilaCamModeVideo: {
+			vision.cameraMode = PBJCameraModeVideo;
+		} break;
+	}
+}
+
 // MARK: PROPERTY
 
 - (void)setDevice:(VoilaCamDevice)device {

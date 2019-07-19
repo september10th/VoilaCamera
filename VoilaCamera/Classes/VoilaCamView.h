@@ -58,4 +58,11 @@
  */
 - (void)flipCameraDevice;
 
+/**
+ Setup camera shot mode
+
+ @param mode mode video or photo
+ */
+- (void)setupShotMode:(VoilaCamMode)mode;
+
 @end
