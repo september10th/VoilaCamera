@@ -65,4 +65,16 @@
  */
 - (void)setupShotMode:(VoilaCamMode)mode;
 
+/**
+ Capture photo
+ */
+- (void)takeShot;
+
+/**
+ Did capure photo call back
+
+ @param action callback
+ */
+- (void)didCapturePhoto:(void (^)(UIImage *image))action;
+
 @end

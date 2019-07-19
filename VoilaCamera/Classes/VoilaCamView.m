@@ -32,11 +32,15 @@
 #import <Masonry/Masonry.h>
 
 
+typedef void(^VoilaCamBlockImage)(UIImage *image);
+
 @interface VoilaCamView () <PBJVisionDelegate> {
 	__weak UIView *vCamera;
 	
 	AVCaptureVideoPreviewLayer *preview;
 	PBJVision *vision;
+	
+	VoilaCamBlockImage blockPhoto;
 }
 @end
 
@@ -114,6 +118,10 @@
 	}
 }
 
+- (void)takeShot {
+	[vision capturePhoto];
+}
+
 // MARK: PROPERTY
 
 - (void)setDevice:(VoilaCamDevice)device {
@@ -122,8 +130,33 @@
 	vision.cameraDevice = _device == VoilaCamDeviceBack ? PBJCameraDeviceBack : PBJCameraDeviceFront;
 }
 
+- (void)didCapturePhoto:(void (^)(UIImage *))action {
+	blockPhoto = action;
+}
+
 // MARK: - DELEGATE
 
 // MARK: PBJVisionDelegate
+
+// MARK: PHOTO RELATED
+
+- (void)visionWillCapturePhoto:(PBJVision *)vision {}
+
+- (void)visionDidCapturePhoto:(PBJVision *)vision {}
+
+- (void)vision:(PBJVision *)vision capturedPhoto:(NSDictionary *)photoDict error:(NSError *)error {
+	
+	if (blockPhoto != nil) {
+		dispatch_async(dispatch_get_main_queue(), ^{
+			/*
+			 PBJVisionPhotoImageKey
+			 PBJVisionPhotoJPEGKey
+			 PBJVisionPhotoMetadataKey
+			 PBJVisionPhotoThumbnailKey
+			 */
+			self->blockPhoto(photoDict[PBJVisionPhotoImageKey]);
+		});
+	}
+}
 
 @end

@@ -64,12 +64,16 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	// DO ANY ADDITIONAL SETUP AFTER LOADING THE VIEW.
+	
+	[preview setupShotMode:VoilaCamModePhoto];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	
 	[preview previewStart];
+	
+	[preview performSelector:@selector(takeShot) withObject:nil afterDelay:5];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
