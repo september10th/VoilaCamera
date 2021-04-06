@@ -1,14 +1,14 @@
 # VoilaCamera
 
-## Example
+### Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-## Requirements
+### Requirements
 
 iOS 11.0+
 
-## Installation
+### Installation
 
 VoilaCamera is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
@@ -17,10 +17,12 @@ it, simply add the following line to your Podfile:
 pod 'VoilaCamera'
 ```
 
-## Author
+### Author
 
-骆昱([blodely](http://luoyu.space)), [indie.luo@gmail.com](mailto:indie.luo@gmail.com).
+骆昱([blodely](https://luoyu.space)), [indie.luo@gmail.com](mailto:indie.luo@gmail.com).
 
-## License
+### License
 
 VoilaCamera is available under the MIT license. See the LICENSE file for more info.
+
+<br><br>
