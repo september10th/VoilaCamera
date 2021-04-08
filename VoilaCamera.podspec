@@ -5,7 +5,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'VoilaCamera'
-  s.version          = '1.0.0'
+  s.version          = '1.1.0'
   s.summary          = 'Voilà: The Camera.'
 
   s.description      = <<-DESC
@@ -19,7 +19,7 @@ An open source camera app project based on GPUImage and FastttCamera.
   s.source           = { :git => 'https://github.com/blodely/VoilaCamera.git', :tag => s.version.to_s }
   s.social_media_url = 'https://weibo.com/blodely'
 
-  s.ios.deployment_target = '10.0'
+  s.ios.deployment_target = '11.0'
 
   s.source_files = 'VoilaCamera/Classes/**/*'
   
@@ -30,7 +30,8 @@ An open source camera app project based on GPUImage and FastttCamera.
   # s.public_header_files = 'Pod/Classes/**/*.h'
   
   s.frameworks = 'UIKit', 'AVFoundation'
-  s.dependency 'LYCategory'
+  
+  s.dependency 'LYCategory', '~> 1.12'
   s.dependency 'PBJVision'
   s.dependency 'Masonry'
   
