@@ -29,11 +29,13 @@
 
 #import "CameraViewController.h"
 #import <Masonry/Masonry.h>
+#import "CameraControls.h"
 
 
-@interface CameraViewController () <PBJVisionDelegate> {
+@interface CameraViewController () {
 	
 	__weak VoilaCamView *preview;
+	__weak CameraControls *controls;
 }
 @end
 
@@ -45,18 +47,27 @@
 	self.view.backgroundColor = [UIColor darkGrayColor];
 	
 	{
+		// MARK: CAMERA PLAYBACK VIEW
 		VoilaCamView *view = [[VoilaCamView alloc] init];
 		[self.view addSubview:view];
 		preview = view;
 		
 		[view mas_makeConstraints:^(MASConstraintMaker *make) {
-			if (@available(iOS 11.0, *)) {
-				make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop).offset(44);
-			} else {
-				make.top.equalTo(self.view).offset(20 + 44);
-			}
+			make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop).offset(44);
 			make.left.right.equalTo(self.view);
 			make.height.equalTo(view.mas_width);
+		}];
+	}
+	
+	{
+		// MARK: CAMERA CONTROL PANEL
+		CameraControls *view = [[CameraControls alloc] init];
+		[self.view addSubview:view];
+		controls = view;
+		
+		[view mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.top.equalTo(self->preview.mas_bottom).offset(10);
+			make.centerX.equalTo(self.view);
 		}];
 	}
 }
@@ -84,7 +95,7 @@
 
 // MARK: - DELEGATE
 
-// MARK: PBJVisionDelegate
+// MARK: 
 
 
 
