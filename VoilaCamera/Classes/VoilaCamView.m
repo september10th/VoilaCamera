@@ -30,6 +30,7 @@
 #import "VoilaCamView.h"
 #import <LYCategory/LYCategory.h>
 #import <Masonry/Masonry.h>
+#import <PBJVision/PBJVision.h>
 
 
 typedef void(^VoilaCamBlockImage)(UIImage *image);
@@ -52,7 +53,7 @@ typedef void(^VoilaCamBlockImage)(UIImage *image);
 	[super initial];
 	
 	{
-		// MARK: CAMERA PLAYBACK
+		// MARK: VIEW FOR CAMERA PLAYBACK
 		UIView *view = [[UIView alloc] init];
 		[self addSubview:view];
 		vCamera = view;
@@ -63,19 +64,21 @@ typedef void(^VoilaCamBlockImage)(UIImage *image);
 	}
 	
 	{
-		preview = [[PBJVision sharedInstance] previewLayer];
-		preview.frame = vCamera.bounds;
-		preview.videoGravity = AVLayerVideoGravityResizeAspectFill;
-		[vCamera.layer addSublayer:preview];
-	}
-	
-	{
+		// MARK: PBJVision INSTANCE
 		vision = [PBJVision sharedInstance];
 		vision.delegate = self;
 		vision.cameraMode = PBJCameraModeVideo;
 		vision.cameraOrientation = PBJCameraOrientationPortrait;
 		vision.focusMode = PBJFocusModeContinuousAutoFocus;
 		vision.outputFormat = PBJOutputFormatStandard;
+	}
+	
+	{
+		// MARK: PBJVision LAYER
+		preview = [[PBJVision sharedInstance] previewLayer];
+		preview.frame = vCamera.bounds;
+		preview.videoGravity = AVLayerVideoGravityResizeAspectFill;
+		[vCamera.layer addSublayer:preview];
 	}
 }
 

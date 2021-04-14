@@ -28,7 +28,6 @@
 //
 
 #import <VoilaCamera/VoilaCamera.h>
-#import <PBJVision/PBJVision.h>
 
 
 @interface VoilaCamView : VCView
