@@ -39,6 +39,10 @@
 @property (weak, nonatomic) VCButton *flash;
 @property (weak, nonatomic) VCButton *grid;
 
+- (void)flipButtonAction:(void (^)(BOOL front))action;
+- (void)flashButtonAction:(void (^)(BOOL flashOn))action;
+- (void)gridButtonAction:(void (^)(BOOL gridOn))action;
+
 @end
 
 

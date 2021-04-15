@@ -38,10 +38,12 @@ typedef void(^VoilaCamBlockImage)(UIImage *image);
 @interface VoilaCamView () <PBJVisionDelegate> {
 	__weak UIView *vCamera;
 	
-	AVCaptureVideoPreviewLayer *preview;
-	PBJVision *vision;
+	__strong AVCaptureVideoPreviewLayer *preview;
+	__strong PBJVision *vision;
 	
-	VoilaCamBlockImage blockPhoto;
+	__weak UIView *vGrid;
+	
+	__strong VoilaCamBlockImage blockPhoto;
 }
 @end
 
@@ -79,6 +81,94 @@ typedef void(^VoilaCamBlockImage)(UIImage *image);
 		preview.frame = vCamera.bounds;
 		preview.videoGravity = AVLayerVideoGravityResizeAspectFill;
 		[vCamera.layer addSublayer:preview];
+	}
+	
+	{
+		// MARK: GRID VIEW
+		UIView *view = [[UIView alloc] init];
+		view.hidden = YES;
+		[self addSubview:view];
+		vGrid = view;
+		
+		[view mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.edges.equalTo(self);
+		}];
+		
+		{
+			// GRID VIEWS
+			NSMutableArray<UIView *> *spaces = [NSMutableArray arrayWithCapacity:1];
+			for (NSInteger i = 0; i < 6; i++) {
+				UIView *space = [[UIView alloc] init];
+				space.backgroundColor = [UIColor clearColor];
+				space.userInteractionEnabled = NO;
+				space.hidden = YES;
+				[spaces addObject:space];
+				[vGrid addSubview:space];
+			}
+			
+			[spaces[0] mas_makeConstraints:^(MASConstraintMaker *make) {
+				make.left.equalTo(view);
+				make.top.bottom.equalTo(view);
+			}];
+			[spaces[1] mas_makeConstraints:^(MASConstraintMaker *make) {
+				make.leading.equalTo(spaces[0].mas_trailing).offset(1);
+				make.width.equalTo(spaces[0]);
+				make.top.bottom.equalTo(view);
+			}];
+			[spaces[2] mas_makeConstraints:^(MASConstraintMaker *make) {
+				make.leading.equalTo(spaces[1].mas_trailing).offset(1);
+				make.width.equalTo(spaces[0]);
+				make.top.bottom.equalTo(view);
+				make.right.equalTo(view);
+			}];
+			[spaces[3] mas_makeConstraints:^(MASConstraintMaker *make) {
+				make.top.equalTo(view);
+				make.left.right.equalTo(view);
+			}];
+			[spaces[4] mas_makeConstraints:^(MASConstraintMaker *make) {
+				make.top.equalTo(spaces[3].mas_bottom).offset(1);
+				make.height.equalTo(spaces[3]);
+				make.left.right.equalTo(view);
+			}];
+			[spaces[5] mas_makeConstraints:^(MASConstraintMaker *make) {
+				make.top.equalTo(spaces[4].mas_bottom).offset(1);
+				make.height.equalTo(spaces[3]);
+				make.left.right.equalTo(view);
+				make.bottom.equalTo(view);
+			}];
+			
+			// GRID LINES
+			UIView *line[4];
+			for (NSInteger i = 0; i < 4; i++) {
+				line[i] = [[UIView alloc] init];
+				line[i].userInteractionEnabled = NO;
+				line[i].frame = (CGRect){0, 0, 1, 1};
+				line[i].backgroundColor = [UIColor whiteColor];
+				line[i].alpha = (1 - GOLDEN_RATIO) * 0.5;
+				[vGrid addSubview:line[i]];
+			}
+			
+			[line[0] mas_makeConstraints:^(MASConstraintMaker *make) {
+				make.width.mas_equalTo(1);
+				make.top.bottom.equalTo(view);
+				make.leading.equalTo(spaces[0].mas_trailing);
+			}];
+			[line[1] mas_makeConstraints:^(MASConstraintMaker *make) {
+				make.width.mas_equalTo(1);
+				make.top.bottom.equalTo(view);
+				make.leading.equalTo(spaces[1].mas_trailing);
+			}];
+			[line[2] mas_makeConstraints:^(MASConstraintMaker *make) {
+				make.height.mas_equalTo(1);
+				make.left.right.equalTo(view);
+				make.top.equalTo(spaces[3].mas_bottom);
+			}];
+			[line[3] mas_makeConstraints:^(MASConstraintMaker *make) {
+				make.height.mas_equalTo(1);
+				make.left.right.equalTo(view);
+				make.top.equalTo(spaces[4].mas_bottom);
+			}];
+		}
 	}
 }
 
@@ -131,6 +221,12 @@ typedef void(^VoilaCamBlockImage)(UIImage *image);
 	_device = device;
 	
 	vision.cameraDevice = _device == VoilaCamDeviceBack ? PBJCameraDeviceBack : PBJCameraDeviceFront;
+}
+
+- (void)setEnableGrid:(BOOL)enableGrid {
+	_enableGrid = enableGrid;
+	
+	vGrid.hidden = !_enableGrid;
 }
 
 - (void)didCapturePhoto:(void (^)(UIImage *))action {

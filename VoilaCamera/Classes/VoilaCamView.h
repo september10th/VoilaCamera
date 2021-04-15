@@ -45,7 +45,12 @@
 /**
  Flash enable.
  */
-@property (nonatomic, assign) BOOL enableFlash;
+@property (nonatomic, assign, getter=isFlashEnable) BOOL enableFlash;
+
+/**
+ Grid enable.
+ */
+@property (nonatomic, assign, getter=isGridEnable) BOOL enableGrid;
 
 /**
  Current camera device.

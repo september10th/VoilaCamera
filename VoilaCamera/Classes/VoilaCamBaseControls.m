@@ -33,10 +33,48 @@
 
 
 @interface VoilaCamBaseControls () {
+	
+	LYCBoolean actionFlip;
+	LYCBoolean actionFlash;
+	LYCBoolean actionGrid;
 }
 @end
 
 @implementation VoilaCamBaseControls
+
+// MARK: - ACTION
+
+- (void)flipButtonPressed:(id)sender {
+	_flip.selected = !_flip.isSelected;
+	
+	if (actionFlip != nil) {
+		actionFlip(_flip.isSelected);
+	} else {
+		NSLog(@"BLOCK NOT FOUND");
+	}
+}
+
+- (void)flashButtonPressed:(id)sender {
+	_flash.selected = !_flash.isSelected;
+	
+	if (actionFlash != nil) {
+		actionFlash(_flash.isSelected);
+	} else {
+		NSLog(@"BLOCK NOT FOUND");
+	}
+}
+
+- (void)gridButtonPressed:(id)sender {
+	_grid.selected = !_grid.isSelected;
+	
+	if (actionGrid != nil) {
+		actionGrid(_grid.isSelected);
+	} else {
+		NSLog(@"BLOCK NOT FOUND");
+	}
+}
+
+// MARK: - INIT
 
 - (void)initial {
 	[super initial];
@@ -46,6 +84,8 @@
 		VCButton *view = [[VCButton alloc] init];
 		[self addSubview:view];
 		_flip = view;
+		
+		[view addTarget:self action:@selector(flipButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
 	}
 	
 	{
@@ -53,6 +93,8 @@
 		VCButton *view = [[VCButton alloc] init];
 		[self addSubview:view];
 		_flash = view;
+		
+		[view addTarget:self action:@selector(flashButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
 	}
 	
 	{
@@ -60,7 +102,21 @@
 		VCButton *view = [[VCButton alloc] init];
 		[self addSubview:view];
 		_grid = view;
+		
+		[view addTarget:self action:@selector(gridButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
 	}
+}
+
+- (void)flipButtonAction:(void (^)(BOOL))action {
+	actionFlip = action;
+}
+
+- (void)flashButtonAction:(void (^)(BOOL))action {
+	actionFlash = action;
+}
+
+- (void)gridButtonAction:(void (^)(BOOL))action {
+	actionGrid = action;
 }
 
 @end
