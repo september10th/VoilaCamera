@@ -37,8 +37,11 @@
 	[super initial];
 	
 	self.flip.icon.image = [UIImage imageNamed:@"btn-flip"];
+	self.flip.iconSel.image = [UIImage imageNamed:@"btn-flip-sel"];
 	self.flash.icon.image = [UIImage imageNamed:@"btn-flash"];
+	self.flash.iconSel.image = [UIImage imageNamed:@"btn-flash-sel"];
 	self.grid.icon.image = [UIImage imageNamed:@"btn-grid"];
+	self.grid.iconSel.image = [UIImage imageNamed:@"btn-grid-sel"];
 	
 	[self.flip mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.left.top.bottom.equalTo(self);

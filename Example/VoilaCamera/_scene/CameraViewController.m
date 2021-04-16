@@ -77,6 +77,18 @@
 	// DO ANY ADDITIONAL SETUP AFTER LOADING THE VIEW.
 	
 	[preview setupShotMode:VoilaCamModePhoto];
+	
+	[controls flipButtonAction:^(BOOL front) {
+		[self->preview flipCameraDevice];
+	}];
+	
+	[controls flashButtonAction:^(BOOL flashOn) {
+		[self->preview setEnableFlash:flashOn];
+	}];
+	
+	[controls gridButtonAction:^(BOOL gridOn) {
+		[self->preview setEnableGrid:gridOn];
+	}];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
