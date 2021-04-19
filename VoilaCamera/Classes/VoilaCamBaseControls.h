@@ -39,8 +39,17 @@
 @property (weak, nonatomic) VCButton *flash;
 @property (weak, nonatomic) VCButton *grid;
 
+/// flip camera button action
+/// @param action action block
 - (void)flipButtonAction:(void (^)(BOOL front))action;
+
+
+/// flashlight switch button action
+/// @param action action block
 - (void)flashButtonAction:(void (^)(BOOL flashOn))action;
+
+/// show or hide grid button action
+/// @param action action block
 - (void)gridButtonAction:(void (^)(BOOL gridOn))action;
 
 @end
