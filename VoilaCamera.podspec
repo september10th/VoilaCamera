@@ -19,7 +19,7 @@ An open source camera app project based on GPUImage and FastttCamera.
   s.source           = { :git => 'https://github.com/blodely/VoilaCamera.git', :tag => s.version.to_s }
   s.social_media_url = 'https://weibo.com/blodely'
 
-  s.ios.deployment_target = '11.0'
+  s.ios.deployment_target = '12.0'
 
   s.source_files = 'VoilaCamera/Classes/**/*'
   
@@ -29,7 +29,7 @@ An open source camera app project based on GPUImage and FastttCamera.
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   
-  s.frameworks = 'UIKit', 'AVFoundation'
+  s.frameworks = 'UIKit', 'AVFoundation', 'SceneKit', 'ARKit'
   
   s.dependency 'LYCategory', '~> 1.12'
   s.dependency 'PBJVision'

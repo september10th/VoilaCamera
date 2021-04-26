@@ -1,13 +1,13 @@
 //
-//	VoilaCamera.h
+//	VoilaARCamView.m
 //	VoilaCamera
 //
-//	Created by Luo Yu on 2019-04-10.
+//	Created by Luo Yu on 2021-04-26.
 //	Email: indie.luo@gmail.com
 //
 //	The MIT License (MIT)
 //
-//	Copyright (c) 2019 骆昱(Luo Yu). All rights reserved.
+//	Copyright (c) 2019-2021 骆昱(Luo Yu). All rights reserved.
 //
 //	Permission is hereby granted, free of charge, to any person obtaining a copy of
 //	this software and associated documentation files (the "Software"), to deal in
@@ -27,43 +27,13 @@
 //	CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-#import <LYCategory/LYCategory.h>
-#import <PBJVision/PBJVision.h>
+#import "VoilaARCamView.h"
 
 
-@interface VoilaCamera : NSObject
-
+@interface VoilaARCamView () {}
 @end
 
+@implementation VoilaARCamView
 
-/// Base View Class
-@interface VCView : UIView
-- (void)initial;
+
 @end
-
-/// Base Control Class
-@interface VCControl : UIControl
-- (void)initial;
-@end
-
-/// Base View Controller Class
-@interface VCViewController : UIViewController
-- (void)initial;
-@end
-
-typedef NS_ENUM(NSUInteger, VoilaCamDevice) {
-	VoilaCamDeviceBack = 0,
-	VoilaCamDeviceFront = 1,
-};
-
-typedef NS_ENUM(NSUInteger, VoilaCamMode) {
-	VoilaCamModePhoto = 0,
-	VoilaCamModeVideo = 1,
-};
-
-#import <VoilaCamera/VoilaCamView.h>
-#import <VoilaCamera/VoilaCamBaseControls.h>
-
-#import <VoilaCamera/VoilaARCamView.h>
