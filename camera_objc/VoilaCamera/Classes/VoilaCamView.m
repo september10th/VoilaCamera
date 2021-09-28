@@ -29,7 +29,6 @@
 
 #import "VoilaCamView.h"
 #import <LYCategory/LYCategory.h>
-#import <Masonry/Masonry.h>
 #import <PBJVision/PBJVision.h>
 
 
@@ -57,12 +56,14 @@ typedef void(^VoilaCamBlockImage)(UIImage *image);
 	{
 		// MARK: VIEW FOR CAMERA PLAYBACK
 		UIView *view = [[UIView alloc] init];
+        view.translatesAutoresizingMaskIntoConstraints = NO;
 		[self addSubview:view];
 		vCamera = view;
 		
-		[view mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.edges.equalTo(self);
-		}];
+        [view.topAnchor constraintEqualToAnchor:self.topAnchor].active = YES;
+        [view.bottomAnchor constraintEqualToAnchor:self.bottomAnchor].active = YES;
+        [view.leftAnchor constraintEqualToAnchor:self.leftAnchor].active = YES;
+        [view.rightAnchor constraintEqualToAnchor:self.rightAnchor].active = YES;
 	}
 	
 	{
@@ -86,57 +87,57 @@ typedef void(^VoilaCamBlockImage)(UIImage *image);
 	{
 		// MARK: GRID VIEW
 		UIView *view = [[UIView alloc] init];
+        view.translatesAutoresizingMaskIntoConstraints = NO;
 		view.hidden = YES;
 		[self addSubview:view];
 		vGrid = view;
 		
-		[view mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.edges.equalTo(self);
-		}];
-		
-		{
-			// GRID VIEWS
-			NSMutableArray<UIView *> *spaces = [NSMutableArray arrayWithCapacity:1];
-			for (NSInteger i = 0; i < 6; i++) {
-				UIView *space = [[UIView alloc] init];
-				space.backgroundColor = [UIColor clearColor];
-				space.userInteractionEnabled = NO;
-				space.hidden = YES;
-				[spaces addObject:space];
-				[vGrid addSubview:space];
-			}
-			
-			[spaces[0] mas_makeConstraints:^(MASConstraintMaker *make) {
-				make.left.equalTo(view);
-				make.top.bottom.equalTo(view);
-			}];
-			[spaces[1] mas_makeConstraints:^(MASConstraintMaker *make) {
-				make.leading.equalTo(spaces[0].mas_trailing).offset(1);
-				make.width.equalTo(spaces[0]);
-				make.top.bottom.equalTo(view);
-			}];
-			[spaces[2] mas_makeConstraints:^(MASConstraintMaker *make) {
-				make.leading.equalTo(spaces[1].mas_trailing).offset(1);
-				make.width.equalTo(spaces[0]);
-				make.top.bottom.equalTo(view);
-				make.right.equalTo(view);
-			}];
-			[spaces[3] mas_makeConstraints:^(MASConstraintMaker *make) {
-				make.top.equalTo(view);
-				make.left.right.equalTo(view);
-			}];
-			[spaces[4] mas_makeConstraints:^(MASConstraintMaker *make) {
-				make.top.equalTo(spaces[3].mas_bottom).offset(1);
-				make.height.equalTo(spaces[3]);
-				make.left.right.equalTo(view);
-			}];
-			[spaces[5] mas_makeConstraints:^(MASConstraintMaker *make) {
-				make.top.equalTo(spaces[4].mas_bottom).offset(1);
-				make.height.equalTo(spaces[3]);
-				make.left.right.equalTo(view);
-				make.bottom.equalTo(view);
-			}];
-			
+        [view.topAnchor constraintEqualToAnchor:self.topAnchor].active = YES;
+        [view.bottomAnchor constraintEqualToAnchor:self.bottomAnchor].active = YES;
+        [view.leftAnchor constraintEqualToAnchor:self.leftAnchor].active = YES;
+        [view.rightAnchor constraintEqualToAnchor:self.rightAnchor].active = YES;
+        
+        {
+            // GRID VIEWS
+            
+            // LAYOUT GUIDES
+            NSMutableArray<UILayoutGuide *> *spaces = [NSMutableArray arrayWithCapacity:1];
+            for (NSInteger i = 0; i < 6; i++) {
+                UILayoutGuide *space = [[UILayoutGuide alloc] init];
+                [spaces addObject:space];
+                [vGrid addLayoutGuide:space];
+            }
+            
+            [spaces[0].leftAnchor constraintEqualToAnchor:view.leftAnchor].active = YES;
+            [spaces[0].topAnchor constraintEqualToAnchor:view.topAnchor].active = YES;
+            [spaces[0].bottomAnchor constraintEqualToAnchor:view.bottomAnchor].active = YES;
+            
+            [spaces[1].leadingAnchor constraintEqualToAnchor:spaces[0].trailingAnchor constant:1].active = YES;
+            [spaces[1].widthAnchor constraintEqualToAnchor:spaces[0].widthAnchor].active = YES;
+            [spaces[1].topAnchor constraintEqualToAnchor:view.topAnchor].active = YES;
+            [spaces[1].bottomAnchor constraintEqualToAnchor:view.bottomAnchor].active = YES;
+            
+            [spaces[2].leadingAnchor constraintEqualToAnchor:spaces[1].trailingAnchor constant:1].active = YES;
+            [spaces[2].widthAnchor constraintEqualToAnchor:spaces[0].widthAnchor].active = YES;
+            [spaces[2].topAnchor constraintEqualToAnchor:view.topAnchor].active = YES;
+            [spaces[2].bottomAnchor constraintEqualToAnchor:view.bottomAnchor].active = YES;
+            [spaces[2].rightAnchor constraintEqualToAnchor:view.rightAnchor].active = YES;
+            
+            [spaces[3].topAnchor constraintEqualToAnchor:view.topAnchor].active = YES;
+            [spaces[3].leftAnchor constraintEqualToAnchor:view.leftAnchor].active = YES;
+            [spaces[3].rightAnchor constraintEqualToAnchor:view.rightAnchor].active = YES;
+            
+            [spaces[4].topAnchor constraintEqualToAnchor:spaces[3].bottomAnchor constant:1].active = YES;
+            [spaces[4].heightAnchor constraintEqualToAnchor:spaces[3].heightAnchor].active = YES;
+            [spaces[4].leftAnchor constraintEqualToAnchor:view.leftAnchor].active = YES;
+            [spaces[4].rightAnchor constraintEqualToAnchor:view.rightAnchor].active = YES;
+            
+            [spaces[5].topAnchor constraintEqualToAnchor:spaces[4].bottomAnchor constant:1].active = YES;
+            [spaces[5].heightAnchor constraintEqualToAnchor:spaces[3].heightAnchor].active = YES;
+            [spaces[5].leftAnchor constraintEqualToAnchor:view.leftAnchor].active = YES;
+            [spaces[5].rightAnchor constraintEqualToAnchor:view.rightAnchor].active = YES;
+            [spaces[5].bottomAnchor constraintEqualToAnchor:view.bottomAnchor].active = YES;
+
 			// GRID LINES
 			UIView *line[4];
 			for (NSInteger i = 0; i < 4; i++) {
@@ -148,26 +149,25 @@ typedef void(^VoilaCamBlockImage)(UIImage *image);
 				[vGrid addSubview:line[i]];
 			}
 			
-			[line[0] mas_makeConstraints:^(MASConstraintMaker *make) {
-				make.width.mas_equalTo(1);
-				make.top.bottom.equalTo(view);
-				make.leading.equalTo(spaces[0].mas_trailing);
-			}];
-			[line[1] mas_makeConstraints:^(MASConstraintMaker *make) {
-				make.width.mas_equalTo(1);
-				make.top.bottom.equalTo(view);
-				make.leading.equalTo(spaces[1].mas_trailing);
-			}];
-			[line[2] mas_makeConstraints:^(MASConstraintMaker *make) {
-				make.height.mas_equalTo(1);
-				make.left.right.equalTo(view);
-				make.top.equalTo(spaces[3].mas_bottom);
-			}];
-			[line[3] mas_makeConstraints:^(MASConstraintMaker *make) {
-				make.height.mas_equalTo(1);
-				make.left.right.equalTo(view);
-				make.top.equalTo(spaces[4].mas_bottom);
-			}];
+            [line[0].widthAnchor constraintEqualToConstant:1].active = YES;
+            [line[0].topAnchor constraintEqualToAnchor:view.topAnchor].active = YES;
+            [line[0].bottomAnchor constraintEqualToAnchor:view.bottomAnchor].active = YES;
+            [line[0].leadingAnchor constraintEqualToAnchor:spaces[0].trailingAnchor].active = YES;
+            
+            [line[1].widthAnchor constraintEqualToConstant:1].active = YES;
+            [line[1].topAnchor constraintEqualToAnchor:view.topAnchor].active = YES;
+            [line[1].bottomAnchor constraintEqualToAnchor:view.bottomAnchor].active = YES;
+            [line[1].leadingAnchor constraintEqualToAnchor:spaces[1].trailingAnchor].active = YES;
+            
+            [line[2].heightAnchor constraintEqualToConstant:1].active = YES;
+            [line[2].leftAnchor constraintEqualToAnchor:view.leftAnchor].active = YES;
+            [line[2].rightAnchor constraintEqualToAnchor:view.rightAnchor].active = YES;
+            [line[2].topAnchor constraintEqualToAnchor:spaces[3].bottomAnchor].active = YES;
+            
+            [line[3].heightAnchor constraintEqualToConstant:1].active = YES;
+            [line[3].leftAnchor constraintEqualToAnchor:view.leftAnchor].active = YES;
+            [line[3].rightAnchor constraintEqualToAnchor:view.rightAnchor].active = YES;
+            [line[3].topAnchor constraintEqualToAnchor:spaces[4].bottomAnchor].active = YES;
 		}
 	}
 }

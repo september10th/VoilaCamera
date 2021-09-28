@@ -33,6 +33,6 @@ An open source camera app project based on GPUImage and FastttCamera.
   
   s.dependency 'LYCategory', '~> 1.12'
   s.dependency 'PBJVision'
-  s.dependency 'Masonry'
+#  s.dependency 'Masonry'
   
 end

@@ -29,7 +29,6 @@
 
 #import "VoilaCamBaseControls.h"
 #import <LYCategory/LYCategory.h>
-#import <Masonry/Masonry.h>
 
 
 @interface VoilaCamBaseControls () {
@@ -133,24 +132,28 @@
 	{
 		// MARK: ICON VIEW
 		UIImageView *view = [[UIImageView alloc] init];
+        view.translatesAutoresizingMaskIntoConstraints = NO;
 		[self addSubview:view];
 		_icon = view;
 		
-		[view mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.edges.equalTo(self);
-		}];
+        [view.topAnchor constraintEqualToAnchor:self].active = YES;
+        [view.bottomAnchor constraintEqualToAnchor:self].active = YES;
+        [view.leftAnchor constraintEqualToAnchor:self].active = YES;
+        [view.rightAnchor constraintEqualToAnchor:self].active = YES;
 	}
 	
 	{
 		// MARK: ICON VIEW FOR STATE SELECTED
 		UIImageView *view = [[UIImageView alloc] init];
+        view.translatesAutoresizingMaskIntoConstraints = NO;
 		view.hidden = YES;
 		[self addSubview:view];
 		_iconSel = view;
 		
-		[view mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.edges.equalTo(self);
-		}];
+        [view.topAnchor constraintEqualToAnchor:self].active = YES;
+        [view.bottomAnchor constraintEqualToAnchor:self].active = YES;
+        [view.leftAnchor constraintEqualToAnchor:self].active = YES;
+        [view.rightAnchor constraintEqualToAnchor:self].active = YES;
 	}
 }
 
