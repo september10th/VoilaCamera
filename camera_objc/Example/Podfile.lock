@@ -1,0 +1,27 @@
+PODS:
+  - LYCategory (1.12.9)
+  - PBJVision (0.6.1)
+  - VoilaCamera (1.1.0):
+    - LYCategory (~> 1.12)
+    - PBJVision
+
+DEPENDENCIES:
+  - VoilaCamera (from `../`)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - LYCategory
+    - PBJVision
+
+EXTERNAL SOURCES:
+  VoilaCamera:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  LYCategory: 8347540ca148dff623683e3423bbcdfae1b53788
+  PBJVision: e53c1a28e89af65907680797ffd46c9d99313249
+  VoilaCamera: 31aab21299103f89c3f6af2b08854cd02991d399
+
+PODFILE CHECKSUM: ef668cbaa22eab49ed0ffb835b6fa34be754e877
+
+COCOAPODS: 1.11.2
