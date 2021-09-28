@@ -28,7 +28,6 @@
 //
 
 #import "CameraViewController.h"
-#import <Masonry/Masonry.h>
 #import "CameraControls.h"
 
 
@@ -49,26 +48,25 @@
 	{
 		// MARK: CAMERA PLAYBACK VIEW
 		VoilaCamView *view = [[VoilaCamView alloc] init];
+        view.translatesAutoresizingMaskIntoConstraints = NO;
 		[self.view addSubview:view];
 		preview = view;
 		
-		[view mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop).offset(44);
-			make.left.right.equalTo(self.view);
-			make.height.equalTo(view.mas_width);
-		}];
+        [view.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor constant:44].active = YES;
+        [view.leftAnchor constraintEqualToAnchor:self.view.leftAnchor].active = YES;
+        [view.rightAnchor constraintEqualToAnchor:self.view.rightAnchor].active = YES;
+        [view.heightAnchor constraintEqualToAnchor:view.widthAnchor].active = YES;
 	}
 	
 	{
 		// MARK: CAMERA CONTROL PANEL
 		CameraControls *view = [[CameraControls alloc] init];
+        view.translatesAutoresizingMaskIntoConstraints = NO;
 		[self.view addSubview:view];
 		controls = view;
-		
-		[view mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.top.equalTo(self->preview.mas_bottom).offset(10);
-			make.centerX.equalTo(self.view);
-		}];
+        
+        [view.topAnchor constraintEqualToAnchor:preview.bottomAnchor constant:10].active = YES;
+        [view.centerXAnchor constraintEqualToAnchor:view.centerXAnchor].active = YES;
 	}
 }
 

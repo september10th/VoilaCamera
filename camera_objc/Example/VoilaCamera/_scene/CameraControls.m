@@ -28,7 +28,6 @@
 //
 
 #import "CameraControls.h"
-#import <Masonry/Masonry.h>
 
 
 @implementation CameraControls
@@ -43,19 +42,22 @@
 	self.grid.icon.image = [UIImage imageNamed:@"btn-grid"];
 	self.grid.iconSel.image = [UIImage imageNamed:@"btn-grid-sel"];
 	
-	[self.flip mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.left.top.bottom.equalTo(self);
-		make.width.height.mas_equalTo(44);
-	}];
-	[self.flash mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.width.top.bottom.equalTo(self.flip);
-		make.leading.equalTo(self.flip.mas_trailing);
-	}];
-	[self.grid mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.width.top.bottom.equalTo(self.flip);
-		make.leading.equalTo(self.flash.mas_trailing);
-		make.right.equalTo(self);
-	}];
+    [self.flip.leftAnchor constraintEqualToAnchor:self.leftAnchor].active = YES;
+    [self.flip.topAnchor constraintEqualToAnchor:self.topAnchor].active = YES;
+    [self.flip.bottomAnchor constraintEqualToAnchor:self.bottomAnchor].active = YES;
+    [self.flip.widthAnchor constraintEqualToConstant:44].active = YES;
+    [self.flip.heightAnchor constraintEqualToConstant:44].active = YES;
+    
+    [self.flash.widthAnchor constraintEqualToAnchor:self.flip.widthAnchor].active = YES;
+    [self.flash.topAnchor constraintEqualToAnchor:self.flip.topAnchor].active = YES;
+    [self.flash.bottomAnchor constraintEqualToAnchor:self.bottomAnchor].active = YES;
+    [self.flash.leadingAnchor constraintEqualToAnchor:self.flip.trailingAnchor].active = YES;
+    
+    [self.grid.widthAnchor constraintEqualToAnchor:self.flip.widthAnchor].active = YES;
+    [self.grid.topAnchor constraintEqualToAnchor:self.flip.topAnchor].active = YES;
+    [self.grid.bottomAnchor constraintEqualToAnchor:self.flip.bottomAnchor].active = YES;
+    [self.grid.leadingAnchor constraintEqualToAnchor:self.flash.trailingAnchor].active = YES;
+    [self.grid.rightAnchor constraintEqualToAnchor:self.rightAnchor].active = YES;
 }
 
 @end

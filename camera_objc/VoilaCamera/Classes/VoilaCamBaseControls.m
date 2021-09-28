@@ -136,10 +136,10 @@
 		[self addSubview:view];
 		_icon = view;
 		
-        [view.topAnchor constraintEqualToAnchor:self].active = YES;
-        [view.bottomAnchor constraintEqualToAnchor:self].active = YES;
-        [view.leftAnchor constraintEqualToAnchor:self].active = YES;
-        [view.rightAnchor constraintEqualToAnchor:self].active = YES;
+        [view.topAnchor constraintEqualToAnchor:self.topAnchor].active = YES;
+        [view.bottomAnchor constraintEqualToAnchor:self.bottomAnchor].active = YES;
+        [view.leftAnchor constraintEqualToAnchor:self.leftAnchor].active = YES;
+        [view.rightAnchor constraintEqualToAnchor:self.rightAnchor].active = YES;
 	}
 	
 	{
@@ -150,10 +150,10 @@
 		[self addSubview:view];
 		_iconSel = view;
 		
-        [view.topAnchor constraintEqualToAnchor:self].active = YES;
-        [view.bottomAnchor constraintEqualToAnchor:self].active = YES;
-        [view.leftAnchor constraintEqualToAnchor:self].active = YES;
-        [view.rightAnchor constraintEqualToAnchor:self].active = YES;
+        [view.topAnchor constraintEqualToAnchor:self.topAnchor].active = YES;
+        [view.bottomAnchor constraintEqualToAnchor:self.bottomAnchor].active = YES;
+        [view.leftAnchor constraintEqualToAnchor:self.leftAnchor].active = YES;
+        [view.rightAnchor constraintEqualToAnchor:self.rightAnchor].active = YES;
 	}
 }
 
