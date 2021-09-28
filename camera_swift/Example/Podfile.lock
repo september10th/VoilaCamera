@@ -1,0 +1,27 @@
+PODS:
+  - NextLevel (0.16.5)
+  - Player (0.13.3)
+  - VoilaCam (0.1.0):
+    - NextLevel (~> 0.16.5)
+    - Player (~> 0.13.3)
+
+DEPENDENCIES:
+  - VoilaCam (from `../`)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - NextLevel
+    - Player
+
+EXTERNAL SOURCES:
+  VoilaCam:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  NextLevel: b9b9b65c7c6dc83f109b2c67aa362593108335a5
+  Player: e1889a481f14b3bc4065b62bed304c3de3b47dfe
+  VoilaCam: 0cd99e7ca91c47956886d1b78b3772f06389d589
+
+PODFILE CHECKSUM: 57fda814eba6d0a05ab99f3082e94fbc92cb3261
+
+COCOAPODS: 1.11.2
