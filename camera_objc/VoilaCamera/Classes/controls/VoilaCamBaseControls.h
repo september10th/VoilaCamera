@@ -30,8 +30,6 @@
 #import <VoilaCamera/VoilaCamera.h>
 
 
-@class VCButton;
-
 /// Camera Control Panel
 @interface VoilaCamBaseControls : VCView
 
@@ -52,11 +50,4 @@
 /// @param action action block
 - (void)gridButtonAction:(void (^)(BOOL gridOn))action;
 
-@end
-
-
-// MARK: - VCButton
-@interface VCButton : VCControl
-@property (weak, nonatomic) UIImageView *icon;
-@property (weak, nonatomic) UIImageView *iconSel;
 @end

@@ -1,13 +1,13 @@
 //
-//	VoilaCamera.h
+//	VCButton.h
 //	VoilaCamera
 //
-//	Created by Luo Yu on 2019-04-10.
+//	Created by Luo Yu on 2022-01-04.
 //	Email: indie.luo@gmail.com
 //
 //	The MIT License (MIT)
 //
-//	Copyright (c) 2019 骆昱(Luo Yu). All rights reserved.
+//	Copyright (c) 2021~2022 骆昱(Luo Yu). All rights reserved.
 //
 //	Permission is hereby granted, free of charge, to any person obtaining a copy of
 //	this software and associated documentation files (the "Software"), to deal in
@@ -27,45 +27,10 @@
 //	CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-#import <LYCategory/LYCategory.h>
-#import <PBJVision/PBJVision.h>
+#import <VoilaCamera/VoilaCamera.h>
 
 
-@interface VoilaCamera : NSObject
-
+@interface VCButton : VCControl
+@property (weak, nonatomic) UIImageView *icon;
+@property (weak, nonatomic) UIImageView *iconSel;
 @end
-
-
-/// Base View Class
-@interface VCView : UIView
-- (void)initial;
-@end
-
-/// Base Control Class
-@interface VCControl : UIControl
-- (void)initial;
-@end
-
-/// Base View Controller Class
-@interface VCViewController : UIViewController
-- (void)initial;
-@end
-
-typedef NS_ENUM(NSUInteger, VoilaCamDevice) {
-	VoilaCamDeviceBack = 0,
-	VoilaCamDeviceFront = 1,
-};
-
-typedef NS_ENUM(NSUInteger, VoilaCamMode) {
-	VoilaCamModePhoto = 0,
-	VoilaCamModeVideo = 1,
-};
-
-#import <VoilaCamera/VoilaCamView.h>
-#import <VoilaCamera/VCButton.h>
-#import <VoilaCamera/VoilaCamBaseControls.h>
-
-#import <VoilaCamera/VoilaARCamView.h>
-
