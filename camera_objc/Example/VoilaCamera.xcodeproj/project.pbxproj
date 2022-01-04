@@ -191,7 +191,7 @@
 			attributes = {
 				CLASSPREFIX = LY;
 				LastUpgradeCheck = 1240;
-				ORGANIZATIONNAME = blodely;
+				ORGANIZATIONNAME = "September 10th";
 				TargetAttributes = {
 					6003F589195388D20070C39A = {
 						DevelopmentTeam = K9CJPHW4CP;
