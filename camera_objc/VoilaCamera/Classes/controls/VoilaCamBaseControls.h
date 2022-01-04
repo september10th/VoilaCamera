@@ -30,6 +30,8 @@
 #import <VoilaCamera/VoilaCamera.h>
 
 
+@class VCButton;
+
 /// Camera Control Panel
 @interface VoilaCamBaseControls : VCView
 

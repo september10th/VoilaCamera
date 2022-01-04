@@ -64,8 +64,8 @@ typedef NS_ENUM(NSUInteger, VoilaCamMode) {
 };
 
 #import <VoilaCamera/VoilaCamView.h>
-#import <VoilaCamera/VCButton.h>
 #import <VoilaCamera/VoilaCamBaseControls.h>
+#import <VoilaCamera/VCButton.h>
 
 #import <VoilaCamera/VoilaARCamView.h>
 
