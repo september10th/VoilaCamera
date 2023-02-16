@@ -5,7 +5,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'VoilaCamera'
-  s.version          = '1.1.0'
+  s.version          = '1.12.0'
   s.summary          = 'Voilà: The Camera.'
 
   s.description      = <<-DESC
