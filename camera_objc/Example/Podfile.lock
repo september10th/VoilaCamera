@@ -1,8 +1,8 @@
 PODS:
-  - LYCategory (1.13.5)
+  - LYCategory (1.14.0)
   - PBJVision (0.6.1)
   - VoilaCamera (1.1.0):
-    - LYCategory (~> 1.13)
+    - LYCategory (~> 1.14)
     - PBJVision
 
 DEPENDENCIES:
@@ -18,10 +18,10 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  LYCategory: 51c34a43af4e37ac43138712f77cc6eda314acb2
+  LYCategory: beedf5ec55523967766e9afc4e0b2ab30dc074bc
   PBJVision: e53c1a28e89af65907680797ffd46c9d99313249
-  VoilaCamera: a3f2244c2dfa650db6fd398f3b6d6bcf128f2d7d
+  VoilaCamera: 2bdfee649e225c39e08be36e17a53c96b378ae93
 
 PODFILE CHECKSUM: ef668cbaa22eab49ed0ffb835b6fa34be754e877
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.11.3
