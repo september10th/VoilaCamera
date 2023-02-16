@@ -66,7 +66,8 @@
 		controls = view;
         
         [view.topAnchor constraintEqualToAnchor:preview.bottomAnchor constant:10].active = YES;
-        [view.centerXAnchor constraintEqualToAnchor:view.centerXAnchor].active = YES;
+        [view.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
+        [view.widthAnchor constraintEqualToConstant:200].active = YES;
 	}
 }
 

@@ -34,6 +34,10 @@
 
 - (void)initial {
 	[super initial];
+    
+    self.flip.translatesAutoresizingMaskIntoConstraints = NO;
+    self.flash.translatesAutoresizingMaskIntoConstraints = NO;
+    self.grid.translatesAutoresizingMaskIntoConstraints = NO;
 	
 	self.flip.icon.image = [UIImage imageNamed:@"btn-flip"];
 	self.flip.iconSel.image = [UIImage imageNamed:@"btn-flip-sel"];
@@ -45,19 +49,32 @@
     [self.flip.leftAnchor constraintEqualToAnchor:self.leftAnchor].active = YES;
     [self.flip.topAnchor constraintEqualToAnchor:self.topAnchor].active = YES;
     [self.flip.bottomAnchor constraintEqualToAnchor:self.bottomAnchor].active = YES;
-    [self.flip.widthAnchor constraintEqualToConstant:44].active = YES;
     [self.flip.heightAnchor constraintEqualToConstant:44].active = YES;
+    [self.flip.widthAnchor constraintEqualToAnchor:self.flip.heightAnchor].active = YES;
     
     [self.flash.widthAnchor constraintEqualToAnchor:self.flip.widthAnchor].active = YES;
     [self.flash.topAnchor constraintEqualToAnchor:self.flip.topAnchor].active = YES;
     [self.flash.bottomAnchor constraintEqualToAnchor:self.bottomAnchor].active = YES;
-    [self.flash.leadingAnchor constraintEqualToAnchor:self.flip.trailingAnchor].active = YES;
     
     [self.grid.widthAnchor constraintEqualToAnchor:self.flip.widthAnchor].active = YES;
     [self.grid.topAnchor constraintEqualToAnchor:self.flip.topAnchor].active = YES;
     [self.grid.bottomAnchor constraintEqualToAnchor:self.flip.bottomAnchor].active = YES;
-    [self.grid.leadingAnchor constraintEqualToAnchor:self.flash.trailingAnchor].active = YES;
     [self.grid.rightAnchor constraintEqualToAnchor:self.rightAnchor].active = YES;
+    
+    {
+        UILayoutGuide *spaces[2];
+        for (NSUInteger i = 0; i < 2; i++) {
+            spaces[i] = [[UILayoutGuide alloc] init];
+            [self addLayoutGuide:spaces[i]];
+        }
+        
+        [spaces[0].leadingAnchor constraintEqualToAnchor:self.flip.trailingAnchor].active = YES;
+        [spaces[0].trailingAnchor constraintEqualToAnchor:self.flash.leadingAnchor].active = YES;
+        [spaces[1].leadingAnchor constraintEqualToAnchor:self.flash.trailingAnchor].active = YES;
+        [spaces[1].trailingAnchor constraintEqualToAnchor:self.grid.leadingAnchor].active = YES;
+        
+        [spaces[0].widthAnchor constraintEqualToAnchor:spaces[1].widthAnchor].active = YES;
+    }
 }
 
 @end
