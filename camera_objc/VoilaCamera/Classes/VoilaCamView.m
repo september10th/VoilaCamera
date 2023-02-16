@@ -101,47 +101,53 @@ typedef void(^VoilaCamBlockImage)(UIImage *image);
             // GRID VIEWS
             
             // LAYOUT GUIDES
-            NSMutableArray<UILayoutGuide *> *spaces = [NSMutableArray arrayWithCapacity:1];
+            UILayoutGuide *spaces[6];
             for (NSInteger i = 0; i < 6; i++) {
-                UILayoutGuide *space = [[UILayoutGuide alloc] init];
-                [spaces addObject:space];
-                [vGrid addLayoutGuide:space];
+                spaces[i] = [[UILayoutGuide alloc] init];
+                [view addLayoutGuide:spaces[i]];
             }
             
-            [spaces[0].leftAnchor constraintEqualToAnchor:view.leftAnchor].active = YES;
-            [spaces[0].topAnchor constraintEqualToAnchor:view.topAnchor].active = YES;
-            [spaces[0].bottomAnchor constraintEqualToAnchor:view.bottomAnchor].active = YES;
+            {
+                // HORIZONTAL SPACING
+                
+                for (NSUInteger i = 0; i < 3; i++) {
+                    [spaces[i].topAnchor constraintEqualToAnchor:view.topAnchor].active = YES;
+                    [spaces[i].bottomAnchor constraintEqualToAnchor:view.bottomAnchor].active = YES;
+                }
+                
+                [spaces[0].leftAnchor constraintEqualToAnchor:view.leftAnchor].active = YES;
+                [spaces[1].leadingAnchor constraintEqualToAnchor:spaces[0].trailingAnchor constant:0].active = YES;
+                [spaces[2].leadingAnchor constraintEqualToAnchor:spaces[1].trailingAnchor constant:0].active = YES;
+                [spaces[2].rightAnchor constraintEqualToAnchor:view.rightAnchor].active = YES;
+                
+                [spaces[0].widthAnchor constraintEqualToAnchor:spaces[1].widthAnchor].active = YES;
+                [spaces[1].widthAnchor constraintEqualToAnchor:spaces[2].widthAnchor].active = YES;
+                
+            }
             
-            [spaces[1].leadingAnchor constraintEqualToAnchor:spaces[0].trailingAnchor constant:1].active = YES;
-            [spaces[1].widthAnchor constraintEqualToAnchor:spaces[0].widthAnchor].active = YES;
-            [spaces[1].topAnchor constraintEqualToAnchor:view.topAnchor].active = YES;
-            [spaces[1].bottomAnchor constraintEqualToAnchor:view.bottomAnchor].active = YES;
-            
-            [spaces[2].leadingAnchor constraintEqualToAnchor:spaces[1].trailingAnchor constant:1].active = YES;
-            [spaces[2].widthAnchor constraintEqualToAnchor:spaces[0].widthAnchor].active = YES;
-            [spaces[2].topAnchor constraintEqualToAnchor:view.topAnchor].active = YES;
-            [spaces[2].bottomAnchor constraintEqualToAnchor:view.bottomAnchor].active = YES;
-            [spaces[2].rightAnchor constraintEqualToAnchor:view.rightAnchor].active = YES;
-            
-            [spaces[3].topAnchor constraintEqualToAnchor:view.topAnchor].active = YES;
-            [spaces[3].leftAnchor constraintEqualToAnchor:view.leftAnchor].active = YES;
-            [spaces[3].rightAnchor constraintEqualToAnchor:view.rightAnchor].active = YES;
-            
-            [spaces[4].topAnchor constraintEqualToAnchor:spaces[3].bottomAnchor constant:1].active = YES;
-            [spaces[4].heightAnchor constraintEqualToAnchor:spaces[3].heightAnchor].active = YES;
-            [spaces[4].leftAnchor constraintEqualToAnchor:view.leftAnchor].active = YES;
-            [spaces[4].rightAnchor constraintEqualToAnchor:view.rightAnchor].active = YES;
-            
-            [spaces[5].topAnchor constraintEqualToAnchor:spaces[4].bottomAnchor constant:1].active = YES;
-            [spaces[5].heightAnchor constraintEqualToAnchor:spaces[3].heightAnchor].active = YES;
-            [spaces[5].leftAnchor constraintEqualToAnchor:view.leftAnchor].active = YES;
-            [spaces[5].rightAnchor constraintEqualToAnchor:view.rightAnchor].active = YES;
-            [spaces[5].bottomAnchor constraintEqualToAnchor:view.bottomAnchor].active = YES;
+            {
+                // VERTICAL SPACING
+                
+                for (NSUInteger i = 3; i < 6; i++) {
+                    [spaces[i].leftAnchor constraintEqualToAnchor:view.leftAnchor].active = YES;
+                    [spaces[i].rightAnchor constraintEqualToAnchor:view.rightAnchor].active = YES;
+                    
+                    if (i > 3) {
+                        [spaces[i].heightAnchor constraintEqualToAnchor:spaces[i - 1].heightAnchor].active = YES;
+                    }
+                }
+                
+                [spaces[3].topAnchor constraintEqualToAnchor:view.topAnchor].active = YES;
+                [spaces[4].topAnchor constraintEqualToAnchor:spaces[3].bottomAnchor constant:1].active = YES;
+                [spaces[5].topAnchor constraintEqualToAnchor:spaces[4].bottomAnchor constant:1].active = YES;
+                [spaces[5].bottomAnchor constraintEqualToAnchor:view.bottomAnchor].active = YES;
+            }
 
 			// GRID LINES
 			UIView *line[4];
 			for (NSInteger i = 0; i < 4; i++) {
 				line[i] = [[UIView alloc] init];
+                line[i].translatesAutoresizingMaskIntoConstraints = NO;
 				line[i].userInteractionEnabled = NO;
 				line[i].frame = (CGRect){0, 0, 1, 1};
 				line[i].backgroundColor = [UIColor whiteColor];
@@ -153,22 +159,24 @@ typedef void(^VoilaCamBlockImage)(UIImage *image);
             [line[0].topAnchor constraintEqualToAnchor:view.topAnchor].active = YES;
             [line[0].bottomAnchor constraintEqualToAnchor:view.bottomAnchor].active = YES;
             [line[0].leadingAnchor constraintEqualToAnchor:spaces[0].trailingAnchor].active = YES;
-            
+
             [line[1].widthAnchor constraintEqualToConstant:1].active = YES;
             [line[1].topAnchor constraintEqualToAnchor:view.topAnchor].active = YES;
             [line[1].bottomAnchor constraintEqualToAnchor:view.bottomAnchor].active = YES;
             [line[1].leadingAnchor constraintEqualToAnchor:spaces[1].trailingAnchor].active = YES;
-            
+
             [line[2].heightAnchor constraintEqualToConstant:1].active = YES;
             [line[2].leftAnchor constraintEqualToAnchor:view.leftAnchor].active = YES;
             [line[2].rightAnchor constraintEqualToAnchor:view.rightAnchor].active = YES;
             [line[2].topAnchor constraintEqualToAnchor:spaces[3].bottomAnchor].active = YES;
-            
+
             [line[3].heightAnchor constraintEqualToConstant:1].active = YES;
             [line[3].leftAnchor constraintEqualToAnchor:view.leftAnchor].active = YES;
             [line[3].rightAnchor constraintEqualToAnchor:view.rightAnchor].active = YES;
             [line[3].topAnchor constraintEqualToAnchor:spaces[4].bottomAnchor].active = YES;
 		}
+        
+        [self bringSubviewToFront:view];
 	}
 }
 
